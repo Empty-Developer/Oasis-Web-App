@@ -17,6 +17,7 @@ export const Logo = () => {
                 width="40"
                 alt="Logo"
             />
+
             <p className={cn("font-semibold text-[#3E78EC]" , font.className)}>
                 Oasis
             </p>

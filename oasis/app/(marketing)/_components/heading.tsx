@@ -13,7 +13,7 @@ export const Heading = () => {
                 Oasis is the connected workspace where <br />
                 better, faster work happens. 
             </h3>
-            <Button>
+            <Button className="dark:text[#FFF]">
                 Enter Oasis
                 <ArrowRight className="h-4 w-3 ml-2"/>
             </Button>
