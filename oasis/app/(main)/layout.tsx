@@ -3,6 +3,7 @@
 import { Spinner } from "@/components/spinner";
 import { useConvexAuth } from "convex/react";
 import { redirect } from "next/navigation";
+import { Navigation } from "./_components/navigation";
 
 const MainLayout = ({
     children
@@ -24,8 +25,11 @@ const MainLayout = ({
     }
 
     return (
-        <div>
-            {children}
+        <div className="h-full flex">
+            <main className="flex-1 h-full overflow-y-auto">
+                <Navigation />
+                {children}
+            </main>
         </div>
     );
 }
