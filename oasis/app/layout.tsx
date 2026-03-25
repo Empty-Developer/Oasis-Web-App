@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { Toaster } from "sonner";
 
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { ConvexClientProvider } from "@/components/providers/convex-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,16 +21,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="h-full">
       <body className={`${inter.className} antialiased h-full`}>
-              <Toaster position="bottom-center" />
-              <ThemeProvider
-                attribute="class"
-                defaultTheme="system"
-                enableSystem
-                disableTransitionOnChange
-                storageKey="oasis-theme-2"
-              >
-                {children}
-              </ThemeProvider>
+        <ConvexClientProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+            storageKey="oasis-theme-2"
+          >
+            {children}
+          </ThemeProvider>
+        </ConvexClientProvider>
       </body>
     </html>
   );
