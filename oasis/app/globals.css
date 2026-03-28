@@ -30,48 +30,44 @@
 }
 
 :root {
-  --background: 0 0% 100%;
-  --foreground: 0 0% 3.9%;
+  --background: 210 20% 98%;
+  --foreground: 222 47% 11%;
   --card: 0 0% 100%;
-  --card-foreground: 0 0% 3.9%;
+  --card-foreground: 222 47% 11%;
   --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 3.9%;
-  --primary: 220 83% 58%;
-  --primary-foreground: 0 0% 98%;
-  --secondary: 0 0% 96.1%;
-  --secondary-foreground: 0 0% 9%;
-  --muted: 0 0% 96.1%;
-  --muted-foreground: 0 0% 45.1%;
-  --accent: 0 0% 96.1%;
-  --accent-foreground: 0 0% 9%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 0 0% 89.8%;
-  --input: 0 0% 89.8%;
-  --ring: 0 0% 3.9%;
-  --radius: 0.5rem;
+  --popover-foreground: 222 47% 11%;
+  --primary: 221 83% 53%; 
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 20% 94%; 
+  --secondary-foreground: 222 47% 11%;
+  --muted: 210 20% 90%;
+  --muted-foreground: 215 16% 47%;
+  --accent: 210 30% 88%;
+  --accent-foreground: 222 47% 11%;
+  --border: 210 20% 88%;
+  --input: 210 20% 88%;
+  --ring: 221 83% 53%;
+  --radius: 0.75rem;
 }
 
 .dark {
   --background: 240 2% 8%;
-  --foreground: 0 0% 98%;
-  --card: 0 0% 3.9%;
-  --card-foreground: 0 0% 98%;
-  --popover: 0 0% 3.9%;
-  --popover-foreground: 0 0% 98%;
-  --primary: 220 83% 58%;
-  --primary-foreground: 0 0% 9%;
-  --secondary: 210, 3%, 12%;
-  --secondary-foreground: 0 0% 98%;
-  --muted: 0 0% 14.9%;
-  --muted-foreground: 220 83% 58%;
-  --accent: 0 0% 14.9%;
-  --accent-foreground: 0 0% 98%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 0 0% 14.9%;
-  --input: 0 0% 14.9%;
-  --ring: 0 0% 83.1%;
+  --foreground: 210 40% 98%;
+  --card: 240 2% 11%;
+  --card-foreground: 210 40% 98%;
+  --popover: 240 2% 11%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 200 100% 65%;
+  --primary-foreground: 240 2% 8%;
+  --secondary: 220 5% 14%; 
+  --secondary-foreground: 210 40% 98%;
+  --muted: 220 5% 20%;
+  --muted-foreground: 215 15% 65%;
+  --accent: 215 25% 22%; 
+  --accent-foreground: 210 40% 98%;
+  --border: 220 5% 18%;
+  --input: 220 5% 18%;
+  --ring: 200 100% 65%;
 }
 
 @layer base {
@@ -80,9 +76,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
   }
-  html, body {
-    height: 100%;
-  }
-  
 }

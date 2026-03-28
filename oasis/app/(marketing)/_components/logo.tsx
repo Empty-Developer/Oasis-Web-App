@@ -1,6 +1,5 @@
 import Image from "next/image"
 import { Poppins } from "next/font/google"
-
 import { cn } from "@/lib/utils"
 
 const font = Poppins({
@@ -16,9 +15,16 @@ export const Logo = () => {
                 height="40"
                 width="40"
                 alt="Logo"
+                className="dark:hidden"
             />
-
-            <p className={cn("font-semibold text-[#3E78EC]" , font.className)}>
+            <Image
+                src="/oasis.png"
+                height="40"
+                width="40"
+                alt="Logo"
+                className="hidden dark:block grayscale invert"
+            />
+            <p className={cn("font-semibold text-primary", font.className)}>
                 Oasis
             </p>
         </div>
