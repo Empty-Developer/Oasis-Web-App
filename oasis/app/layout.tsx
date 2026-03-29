@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning className="h-full">
-      <body className={`${inter.className} antialiased h-full`}>
+      <body suppressHydrationWarning className={`${inter.className} antialiased h-full`}>
         <ConvexClientProvider>
           <ThemeProvider
             attribute="class"
