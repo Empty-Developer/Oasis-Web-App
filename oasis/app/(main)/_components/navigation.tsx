@@ -38,7 +38,7 @@ export const Navigation = () => {
   const isMobile = useMediaQuery("(max-width: 768px)")
   const isResizingRef = useRef(false)
   const sidebarRef = useRef<HTMLElement>(null)
-  const navbarRef = useRef<HTMLElement>(null)
+  const navbarRef = useRef<HTMLDivElement>(null);
   const [isResetting, setIsResetting] = useState(false)
   const [isCollapsed, setIsCollapsed] = useState(isMobile)
   const create = useMutation(api.documents.create)

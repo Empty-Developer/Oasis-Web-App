@@ -28,19 +28,20 @@ export const TrashBox = () => {
         router.push(`/documents/${documentId}`)
     }
 
-    const onRestore = (
-        event: React.MouseEvent<HTMLDetailsElement, MouseEvent>,
-        documentId: Id<"documents">,
+            const onRestore = (
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+        documentId: Id<"documents">
     ) => {
-        event.stopPropagation()
-        const promise = restore({ id: documentId })
+        event.stopPropagation();
+
+        const promise = restore({ id: documentId }); // Создаем promise
 
         toast.promise(promise, {
             loading: "Restoring note...",
             success: "Note restored!",
             error: "Failed to restore note."
-        })
-    }
+        });
+    };
 
     const onRemove = (
         documentId: Id<"documents">,
