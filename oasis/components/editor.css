@@ -1,0 +1,40 @@
+@reference "../app/globals.css"; 
+
+.bn-container {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    background-color: transparent !important;
+}
+
+.bn-editor {
+    padding-inline: 54px !important;
+}
+
+.bn-container[data-theme="light"] {
+    --bn-colors-editor-text: hsl(222 47% 11%);
+    --bn-colors-editor-background: transparent;
+    --bn-colors-cursor: hsl(221 83% 53%);
+}
+
+.bn-container[data-theme="dark"] {
+    --bn-colors-editor-text: hsl(210 40% 98%);
+    --bn-colors-editor-background: transparent;
+    --bn-colors-cursor: hsl(200 100% 65%);
+}
+
+.bn-slash-menu {
+    background-color: hsl(var(--popover)) !important;
+    border: 1px solid hsl(var(--border)) !important;
+    color: hsl(var(--popover-foreground)) !important;
+    border-radius: var(--radius) !important;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1) !important;
+}
+
+.bn-slash-menu-item[data-selected="true"] {
+    background-color: hsl(var(--accent)) !important;
+    color: hsl(var(--accent-foreground)) !important;
+}
+
+.bn-side-menu {
+    color: hsl(var(--muted-foreground)) !important;
+}

@@ -1,11 +1,15 @@
 "use client"
 
-import { Cover } from "@/components/cover";
-import { Toolbar } from "@/components/toolbar";
+import * as React from "react";
+import { useMutation, useQuery } from "convex/react";
+import { useRouter } from "next/navigation";
+
 import { api } from "@/convex/_generated/api"
 import { Id } from "@/convex/_generated/dataModel";
-import { useQuery } from "convex/react";
-import * as React from "react";
+import { Cover } from "@/components/cover";
+import { Editor } from "@/components/editor";
+import { Toolbar } from "@/components/toolbar";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface DocumentIdPageProps {
     params: Promise<{
@@ -16,33 +20,59 @@ interface DocumentIdPageProps {
 const DocumentIdPage = ({
     params
 }: DocumentIdPageProps) => {
+    const router = useRouter();
     const resolvedParams = React.use(params);
 
-    const document = useQuery(api.documents.getById, {
-        documentId: resolvedParams.documentId
-    });
+    const document = useQuery(api.documents.getById,
+        (resolvedParams.documentId && (resolvedParams.documentId as string) !== "null")
+            ? { documentId: resolvedParams.documentId }
+            : "skip"
+    );
+
+    const update = useMutation(api.documents.update);
+
+    React.useEffect(() => {
+        if (document === null || (resolvedParams.documentId as string) === "null") {
+            router.push("/documents");
+        }
+    }, [document, resolvedParams.documentId, router]);
+
+    const onChange = (content: string) => {
+        update({
+            id: resolvedParams.documentId,
+            content
+        });
+    };
 
     if (document === undefined) {
         return (
             <div>
-                Loading...
+                <Cover.Skeleton />
+                <div className="md:max-w-3xl lg:max-w-4xl mx-auto mt-10">
+                    <div className="space-y-4 pl-8 pt-4">
+                        <Skeleton className="h-14 w-[50%]"/>
+                        <Skeleton className="h-4 w-[80%]"/>
+                        <Skeleton className="h-4 w-[40%]"/>
+                        <Skeleton className="h-4 w-[60%]"/>
+                    </div>
+                </div>
             </div>
-        )
+        );
     }
 
     if (document === null) {
-        return (
-            <div>
-                Not found
-            </div>
-        )
+        return null;
     }
 
     return (
         <div className="pb-40">
             <Cover url={document.coverImage} />
-            <div className="md:max-w-3xl lg:max-4-4xl mx-auto">
+            <div className="md:max-w-3xl lg:max-w-4xl mx-auto">
                 <Toolbar initialData={document} />
+                <Editor
+                    onChange={onChange}
+                    initialContent={document.content}
+                />
             </div>
         </div>
     );

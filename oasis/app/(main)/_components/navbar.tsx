@@ -1,10 +1,12 @@
 "use client"
 
-import { api } from "@/convex/_generated/api"
-import { Id } from "@/convex/_generated/dataModel"
+import { useParams } from "next/navigation"
 import { useQuery } from "convex/react"
 import { MenuIcon } from "lucide-react"
-import { useParams } from "next/navigation"
+
+import { api } from "@/convex/_generated/api"
+import { Id } from "@/convex/_generated/dataModel"
+
 import { Title } from "./title"
 import { Banner } from "./banner"
 import { Menu } from "./menu"
@@ -18,10 +20,16 @@ export const Navbar = ({
     isCollapsed,
     onResetWidth
 }: NavbarProps) => {
-    const params = useParams()
-    const document = useQuery(api.documents.getById, {
-        documentId: params.documentId as Id<"documents">,
-    })
+    const params = useParams();
+
+    const documentId = params.documentId as Id<"documents">;
+
+    const document = useQuery(
+        api.documents.getById,
+        (documentId && documentId !== ("null" as any))
+            ? { documentId }
+            : "skip"
+    );
 
     if (document === undefined) {
         return (
@@ -35,17 +43,17 @@ export const Navbar = ({
     }
 
     if (document === null) {
-        return null
+        return null;
     }
 
     return (
         <>
-            <nav className="bg-background dark:bg-background px-3 py-2 w-full flex items-center gap-x-4 ">
+            <nav className="bg-background dark:bg-background px-3 py-2 w-full flex items-center gap-x-4">
                 {isCollapsed && (
                     <MenuIcon
                         role="button"
                         onClick={onResetWidth}
-                        className="h-4 w-6 text-muted-foreground"
+                        className="h-6 w-6 text-muted-foreground hover:bg-neutral-300 dark:hover:bg-neutral-600 transition p-1 rounded-sm"
                     />
                 )}
                 <div className="flex items-center justify-between w-full">
